@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace ControleVeiculo.Models;
 
@@ -14,8 +15,12 @@ public class Abastecimento : IBaseModel
     public int KM { get; set; }
     public double Litros { get; set; }
     public decimal Valor { get; set; }
+    [JsonIgnore]
     public DateTime DataCriacao { get; set; } = DateTime.Now;
+    [JsonIgnore]
     public Guid UsuarioCriacao { get; set; }
+    [JsonIgnore]
     public DateTime DataAlteracao { get; set; } = DateTime.Now;
+    [JsonIgnore]
     public Guid UsuarioAlteracao { get; set; }
 }
