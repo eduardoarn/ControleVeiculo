@@ -5,11 +5,12 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
 export function getBaseUrl() {
-  return document.getElementsByTagName('base')[0].href;
+  // return document.getElementsByTagName('base')[0].href;
+  return environment.apiUrl;
 }
 
 const providers = [
-  { provide: 'BASE_URL', useFactory: getBaseUrl, deps: [] }
+  { provide: 'BASE_PATH', useFactory: getBaseUrl, deps: [] }
 ];
 
 if (environment.production) {
