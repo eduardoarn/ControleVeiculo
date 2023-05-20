@@ -45,6 +45,8 @@ public class BaseController<T> : ControllerBase where T : class, Models.IBaseMod
             //valida se o item existe no banco e retorna ele para uma variável
             var item = await _context.Set<T>().FindAsync(itemAdd.Id);
             if (item == null) return BadRequest(new { message = "Objeto não encontrado na base de dados" });
+            itemAdd.DataCriacao = item.DataCriacao;
+            itemAdd.UsuarioCriacao = item.UsuarioCriacao;
             _context.Update(itemAdd);
             await _context.SaveChangesAsync();
             return Ok(itemAdd);

@@ -23,4 +23,17 @@ public class DataContext : DbContext
         modelBuilder.Entity<MotoristaVeiculo>().HasOne(mv => mv.Veiculo).WithMany(m => m.MotoristaVeiculos).HasForeignKey(mv => mv.VeiculoId);
         base.OnModelCreating(modelBuilder);
     }
+
+    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    // => optionsBuilder.LogTo(Console.WriteLine);
+
+
+    //Enable shown in terminall query
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    => optionsBuilder
+        .LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name });
+
+
+
+
 }
