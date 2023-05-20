@@ -1,5 +1,4 @@
-namespace ControleVeiculo;
-
+namespace ControleVeiculo.Models;
 public class MotoristaVeiculo
 {
     public Guid VeiculoId { get; set; }

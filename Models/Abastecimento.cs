@@ -1,7 +1,10 @@
-namespace ControleVeiculo;
+using System.ComponentModel.DataAnnotations;
 
-public class Abastecimento
+namespace ControleVeiculo.Models;
+
+public class Abastecimento : IBaseModel
 {
+    [Key]
     public Guid Id { get; set; }
     public DateTime DataLancamento { get; set; }
     public Guid MotoristaId { get; set; }

@@ -1,6 +1,6 @@
-namespace ControleVeiculo;
+namespace ControleVeiculo.Models;
 
-public class Veiculo
+public class Veiculo : IBaseModel
 {
     public Guid Id { get; set; }
     public string Marca { get; set; } = null!;

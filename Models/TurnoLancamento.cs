@@ -1,6 +1,6 @@
-namespace ControleVeiculo;
+namespace ControleVeiculo.Models;
 
-public class TurnoLancamento
+public class TurnoLancamento : IBaseModel
 {
     public Guid Id { get; set; }
     public DateTime DataLancamento { get; set; }

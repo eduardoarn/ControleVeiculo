@@ -1,6 +1,6 @@
-namespace ControleVeiculo;
+namespace ControleVeiculo.Models;
 
-public class Motorista
+public class Motorista : IBaseModel
 {
     public Guid Id { get; set; }
     public string Email { get; set; } = null!;
