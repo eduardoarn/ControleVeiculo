@@ -90,6 +90,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
+            "skipTests": true,
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
@@ -132,5 +133,8 @@
       }
     }
   },
-  "defaultProject": "ControleVeiculo"
+  "defaultProject": "ControleVeiculo",
+  "cli": {
+    "analytics": false
+  }
 }
