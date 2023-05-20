@@ -33,7 +33,7 @@ public class MotoristaController : BaseController<Models.Motorista>
         return new Helpers.ListaRetorno<Models.Motorista>()
         {
             Lista = await query.OrderBy(x => x.PrimeiroNome).Skip((pagina - 1) * 10).Take(_totalPaginas).ToListAsync(),
-            TotalRegistros = query.Count(),
+            TotalRegistros = await query.CountAsync(),
             PaginaAtual = pagina,
             TamanhoPagina = _totalPaginas
         };
