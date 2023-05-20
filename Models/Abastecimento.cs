@@ -3,6 +3,9 @@ using System.Text.Json.Serialization;
 
 namespace ControleVeiculo.Models;
 
+/// <summary>
+/// Classe de Abastecimento
+/// </summary>
 public class Abastecimento : IBaseModel
 {
     [Key]

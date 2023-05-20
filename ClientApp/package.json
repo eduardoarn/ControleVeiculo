@@ -10,7 +10,8 @@
     "build": "ng build",
     "build:ssr": "ng run ControleVeiculo:server:dev",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "sdk": "openapi-generator-cli generate -i http://localhost:5156/swagger/v1/swagger.json -g typescript-angular -o src/app/shared/sdkcore"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +24,7 @@
     "@angular/platform-browser-dynamic": "^16.0.2",
     "@angular/platform-server": "^16.0.2",
     "@angular/router": "^16.0.2",
+    "@openapitools/openapi-generator-cli": "^2.6.0",
     "bootstrap": "^5.2.3",
     "jquery": "^3.6.3",
     "oidc-client": "^1.11.5",
@@ -49,6 +51,5 @@
   },
   "overrides": {
     "autoprefixer": "10.4.5"
-  },
-  "optionalDependencies": {}
+  }
 }

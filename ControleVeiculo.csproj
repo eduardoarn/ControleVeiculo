@@ -4,6 +4,11 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
+    <!-- inicio propriedades para o Swagger -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+    <NoWarn>$(NoWarn);8632</NoWarn>
+    <!-- Dados do SPA -->
     <SpaRoot>ClientApp\</SpaRoot>
     <SpaProxyServerUrl>https://localhost:44481</SpaProxyServerUrl>
     <!-- <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand> -->
