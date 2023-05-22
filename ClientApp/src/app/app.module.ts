@@ -7,18 +7,17 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
 
 import { environment } from '../environments/environment';
-import { ApiModule, BASE_PATH } from './shared/sdkcore';
+import { ApiModule, BASE_PATH, Configuration } from './shared/sdkcore';
+import { canActivate, canActivateChild } from './services/auth-guard.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
-    HomeComponent,
-    CounterComponent
-
+    HomeComponent
   ],
   imports: [
     ApiModule,
@@ -27,10 +26,25 @@ import { ApiModule, BASE_PATH } from './shared/sdkcore';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
+      { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), canActivate: [canActivate], canActivateChild: [canActivateChild] },
+      { path: 'cliente', loadChildren: () => import('./cliente/cliente.module').then(m => m.ClienteModule), canActivate: [canActivate], canActivateChild: [canActivateChild] },
     ])
   ],
-  providers: [{ provide: BASE_PATH, useValue: environment.apiUrl }],
+  providers: [
+    { provide: BASE_PATH, useValue: environment.apiUrl },
+    {
+      provide: Configuration,
+      useFactory: (authService: AuthService) => new Configuration(
+        {
+          basePath: environment.apiUrl,
+          accessToken: authService.getAccessToken.bind(authService)
+        }
+      ),
+      deps: [AuthService],
+      multi: false
+    }
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
