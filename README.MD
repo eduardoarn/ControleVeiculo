@@ -1,3 +1,7 @@
+# Para rodar o projeto
+
+Em ambiente de desenvolvimento você deverá abrir dois terminais em um terminal você deverá entrar na pasta ClientApp `cd ClientApp` e executar o comando `npm run start` no segundo terminal na raiz do projeto execute o comando `dotnet watch run`.
+
 
 
 # Comandos  úteis 
