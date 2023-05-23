@@ -1,1 +1,47 @@
-<p>lista works!</p>
+<div class="jumbotron jumbotron-fluid pb-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <h1 class="display-4" class="font-weight-bold mb-0 text-primary">Cadastro de Veículo</h1>
+                <div class="float-end" style="margin-top: -20px;">
+                    <a routerLink="/admin/veiculo/novo" class="btn btn-primary">Novo Item</a>
+                </div>
+                <p class="mb-0">Manutenção do cadastro de veículos</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- crie um header com bootstrap para a página de veiculos depois uma lista buscando os dados de retorno.lista -->
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped responsive">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Placa</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Localidade</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let veiculo of retorno.lista">
+                        <!-- <td>{{veiculo.id}}</td> Criar a coluna com id mas apenas com os 5 primeiros caracteres -->
+                        <td>{{veiculo.id | slice:0:5}}...</td>
+                        <td>{{veiculo.placa}}</td>
+                        <td>{{veiculo.marca}}</td>
+                        <td>{{veiculo.modelo}}</td>
+                        <td>{{veiculo.localidade}}</td>
+                        <td>
+                            <a routerLink="/admin/veiculo/editar/{{veiculo.id}}" class="btn btn-primary">Editar</a>
+                            <!-- <button class="btn btn-danger" (click)="deletar(veiculo.id)">Deletar</button> -->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

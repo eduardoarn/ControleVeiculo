@@ -32,24 +32,34 @@ public class BaseController<T> : ControllerBase where T : class, Models.IBaseMod
         return BadRequest(ModelState);
     }
 
+
+    [HttpGet("{id}")]
+    public async Task<T> GetById(Guid id)
+    {
+        var r = await _context.Set<T>().FirstOrDefaultAsync(x => x.Id == id)!;
+        if (r is not null) return r;
+        else throw new Exception("Objeto não encontrado");
+
+    }
+
     [HttpPut]
-    public async Task<IActionResult> Update(T itemAdd)
+    public async Task<IActionResult> Update(T itemAtualizar)
     {
         //Validar o itemAdd.Id que é do tipo Guid é diferente de null
-        if (itemAdd is null) return BadRequest(new { message = "Objeto informado é nulo" });
-        if (itemAdd.Id == Guid.Empty) return BadRequest(new { message = "Objeto informado contem dados inválidos" });
+        if (itemAtualizar is null) return BadRequest(new { message = "Objeto informado é nulo" });
+        if (itemAtualizar.Id == Guid.Empty) return BadRequest(new { message = "Objeto informado contem dados inválidos" });
 
-        itemAdd.DataAlteracao = DateTime.Now;
+        itemAtualizar.DataAlteracao = DateTime.Now;
         if (ModelState.IsValid)
         {
             //valida se o item existe no banco e retorna ele para uma variável
-            var item = await _context.Set<T>().FindAsync(itemAdd.Id);
-            if (item == null) return BadRequest(new { message = "Objeto não encontrado na base de dados" });
-            itemAdd.DataCriacao = item.DataCriacao;
-            itemAdd.UsuarioCriacao = item.UsuarioCriacao;
-            _context.Update(itemAdd);
+            var itemBanco = await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(x => x.Id == itemAtualizar.Id);
+            if (itemBanco == null) return BadRequest(new { message = "Objeto não encontrado na base de dados" });
+            itemAtualizar.DataCriacao = itemBanco.DataCriacao;
+            itemAtualizar.UsuarioCriacao = itemBanco.UsuarioCriacao;
+            _context.Update(itemAtualizar);
             await _context.SaveChangesAsync();
-            return Ok(itemAdd);
+            return Ok(itemAtualizar);
         }
         return BadRequest(ModelState);
     }

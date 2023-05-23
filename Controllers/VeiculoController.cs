@@ -24,7 +24,7 @@ public class VeiculoController : BaseController<Models.Veiculo>
     public async Task<Helpers.ListaRetorno<Models.Veiculo>> Get(string? filtro, int pagina = 1)
     {
         var query = _context.Veiculos.AsQueryable().AsNoTracking();
-        if (filtro is not null)
+        if (!string.IsNullOrEmpty(filtro))
         {
             query = query.Where(x => EF.Functions.ILike(x.Placa, $"%{filtro}%") || EF.Functions.ILike(x.Marca, $"%{filtro}%") || EF.Functions.ILike(x.Modelo, $"%{filtro}%"));
         }

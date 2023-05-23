@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { VeiculoRoutingModule } from './veiculo-routing.module';
 import { ListaComponent } from './lista/lista.component';
 import { FormComponent } from './form/form.component';
+import { BaseAdminModule } from '../base-admin.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { FormComponent } from './form/form.component';
   ],
   imports: [
     CommonModule,
-    VeiculoRoutingModule
+    VeiculoRoutingModule,
+    BaseAdminModule
   ]
 })
 export class VeiculoModule { }

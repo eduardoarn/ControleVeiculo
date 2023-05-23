@@ -29,9 +29,9 @@ public class DataContext : DbContext
 
 
     //Enable shown in terminall query
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    => optionsBuilder
-        .LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name });
+    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    // => optionsBuilder
+    //     .LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name });
 
 
 
