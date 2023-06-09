@@ -14,23 +14,33 @@
 <!-- crie um header com bootstrap para a página de veiculos depois uma lista buscando os dados de retorno.lista -->
 <div class="container">
 
+    <span> <small>Página:{{retorno.paginaAtual}} de {{totalDePaginas}} | total de registros:{{retorno.totalRegistros}} | Registros por página:{{retorno.tamanhoPagina}}</small></span>
+    <!-- criar bloco com botões de próxima página e pagina anterior -->
+    <!-- <div>
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" (click)="retorno.paginaAnterior()">Anterior</a>
+
+            </li>
+            <li class="page-item">
+                
+    </div> -->
     <div class="row">
         <div class="col-md-12">
             <table class="table table-striped responsive">
                 <thead>
                     <tr>
-                        <th>#</th>
                         <th>Placa</th>
                         <th>Marca</th>
                         <th>Modelo</th>
                         <th>Localidade</th>
-                        <th></th>
+                        <th style="width: 70px;"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let veiculo of retorno.lista">
                         <!-- <td>{{veiculo.id}}</td> Criar a coluna com id mas apenas com os 5 primeiros caracteres -->
-                        <td>{{veiculo.id | slice:0:5}}...</td>
+                        <!-- <td>{{veiculo.id | slice:0:5}}...</td> -->
                         <td>{{veiculo.placa}}</td>
                         <td>{{veiculo.marca}}</td>
                         <td>{{veiculo.modelo}}</td>
