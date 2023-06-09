@@ -13,18 +13,6 @@
 </div>
 <!-- crie um header com bootstrap para a página de veiculos depois uma lista buscando os dados de retorno.lista -->
 <div class="container">
-
-    <span> <small>Página:{{retorno.paginaAtual}} de {{totalDePaginas}} | total de registros:{{retorno.totalRegistros}} | Registros por página:{{retorno.tamanhoPagina}}</small></span>
-    <!-- criar bloco com botões de próxima página e pagina anterior -->
-    <!-- <div>
-        <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link" (click)="retorno.paginaAnterior()">Anterior</a>
-
-            </li>
-            <li class="page-item">
-                
-    </div> -->
     <div class="row">
         <div class="col-md-12">
             <table class="table table-striped responsive">
@@ -52,6 +40,19 @@
                     </tr>
                 </tbody>
             </table>
+
+            <span> <small> Total de registros: {{retorno.totalRegistros}} | Registros por página: {{retorno.tamanhoPagina}}</small></span>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" [ngClass]="{'disabled': (retorno.paginaAtual != null && retorno.paginaAtual <= 1)}">
+                        <a class="page-link" (click)="buscar((retorno.paginaAtual || 2) - 1)">Anterior</a>
+                    </li>
+                    <li class="page-item disabled"><a class="page-link">Página <b>{{retorno.paginaAtual}}</b> de <b>{{totalDePaginas}}</b></a> </li>
+                    <li class="page-item" [ngClass]="{'disabled': (retorno.paginaAtual != null && retorno.paginaAtual >= totalDePaginas)}">
+                        <a class="page-link" (click)="buscar((retorno.paginaAtual || 1) + 1)">Próxima</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>

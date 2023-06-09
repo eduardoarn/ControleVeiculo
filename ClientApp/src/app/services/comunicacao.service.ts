@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -25,6 +26,9 @@ export class ComunicacaoService {
 
   error(err: any) {
     console.error(err);
+    this.isCarregando(false);
+    if (err instanceof HttpErrorResponse) alert(err.message);
+    else alert(err);
   }
 
   navegar(url: string[] = [], queryParams: any = {}) {

@@ -24,10 +24,10 @@ export class ListaComponent {
 
   buscar(pagina: number = 1) {
     this.iniciado = false;
-    this.comunic.isCarregando(true,"Buscando os veículos...");
+    this.comunic.isCarregando(true, "Buscando os veículos...");
     this.apiVeiculo.veiculoGet(this.textoFiltro, pagina).subscribe({
       next: (x) => { this.retorno = x; },
-      error: (err) => console.error(err),
+      error: (err) => this.comunic.error(err),
       complete: () => { this.iniciado = true; this.comunic.isCarregando(false); }
     });
   }

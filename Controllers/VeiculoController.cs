@@ -32,7 +32,7 @@ public class VeiculoController : BaseController<Models.Veiculo>
 
         return new Helpers.ListaRetorno<Models.Veiculo>()
         {
-            Lista = await query.OrderBy(x => x.Placa).Skip((pagina - 1) * 10).Take(_totalPaginas).ToListAsync(),
+            Lista = await query.OrderBy(x => x.Placa).Skip((pagina - 1) * _totalPaginas).Take(_totalPaginas).ToListAsync(),
             TotalRegistros = await query.CountAsync(),
             PaginaAtual = pagina,
             TamanhoPagina = _totalPaginas
