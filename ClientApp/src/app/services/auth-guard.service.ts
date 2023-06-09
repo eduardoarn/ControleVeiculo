@@ -1,6 +1,7 @@
-import { Injectable, inject } from '@angular/core';
+import { Inject, Injectable, inject } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateChildFn, CanActivateFn, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { AuthService } from './auth.service';
+import { ComunicacaoService } from './comunicacao.service';
 
 // @Injectable({
 //   providedIn: 'root'
@@ -17,6 +18,9 @@ import { AuthService } from './auth.service';
 export const canActivate: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
   const authService = inject(AuthService);
   const router = inject(Router);
+  const comunic = inject(ComunicacaoService);
+  comunic.isCarregando(true, 'Verificando permissão...');
+
   return true;
 
   // authService.checkLogin().pipe(

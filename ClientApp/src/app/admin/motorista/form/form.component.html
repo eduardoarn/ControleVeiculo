@@ -1,1 +1,46 @@
-<p>form works!</p>
+<div class="jumbotron jumbotron-fluid pb-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <h1 class="display-4" class="font-weight-bold mb-0 text-primary">Cadastro de Motorista</h1>
+                <p class="mb-0">Manutenção do cadastro de motorista</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="needs-validation" [ngClass]="{'was-validated': submitted}" novalidate>
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+                <label for="primeiroNome" class="control-label">Primeiro Nome</label>
+                <input type="text" class="form-control" name="primeiroNome" id="primeiroNome" placeholder="Primeiro nome do motorista" [ngModel]="dadosDoForm.primeiroNome" #primeiroNome="ngModel" required>
+                <div class="invalid-feedback">
+                    <span *ngIf="sobreNome.errors?.required">Primeiro nome é obrigatório</span>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="sobreNome" class="control-label">Sobrenome</label>
+                <input type="text" class="form-control" name="sobreNome" id="sobreNome" placeholder="Sobrenome do motorista" [ngModel]="dadosDoForm.sobreNome" #sobreNome="ngModel" required>
+                <div class="invalid-feedback">
+                    <span *ngIf="sobreNome.errors?.required">Sobrenome é obrigatório</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="email" class="control-label">E-mail</label>
+                <input type="email" email="true" class="form-control" name="email" id="email" placeholder="E-mail do motorista" [ngModel]="dadosDoForm.email" #email="ngModel" required>
+                <div class="invalid-feedback">
+                    <span *ngIf="email.errors?.required">E-mail é obrigatório</span>
+                    <span *ngIf="email.errors?.email">E-mail inválido</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+    </form>
+</div>
